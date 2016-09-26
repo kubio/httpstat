@@ -2,6 +2,8 @@
 
 Elixirのお勉強
 
+![](screenshot.png)
+
 ## TODO
 - READMEちゃんと書く
 - テキストをカラーに
