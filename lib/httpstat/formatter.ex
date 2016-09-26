@@ -10,7 +10,6 @@ defmodule Formatter do
 
     def version do
         IO.puts "httpstat "<>Application.get_env(:httpstat, :version)
-        IO.puts "https://github.com/kubio/httpstat"
     end
 
     def help do

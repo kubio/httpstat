@@ -54,9 +54,9 @@ defmodule Httpstat do
         IO.puts header
 
         # body
-        {:ok, body} = File.read body_file_path
-        IO.puts ""
-        IO.puts body
+        # {:ok, body} = File.read body_file_path
+        # IO.puts ""
+        # IO.puts body
 
         # status
         IO.puts ""
