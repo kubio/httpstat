@@ -21,7 +21,7 @@ use Mix.Config
 #     config :logger, level: :info
 #
 config :httpstat,
-    version: "0.0.1"
+    version: "0.1.0"
 
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment
