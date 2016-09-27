@@ -1,8 +1,10 @@
 # httpstat
 
-Elixirのお勉強
+httpstat is a curl like tool, visualize http/https process and show the duration.
 
 ![](screenshot.png)
+
+Reference from [python httpstat](https://github.com/reorx/httpstat) / [go httpstat](https://github.com/davecheney/httpstat) / [node httpstat](https://github.com/yosuke-furukawa/httpstat)
 
 ## TODO
 - READMEちゃんと書く
