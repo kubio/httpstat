@@ -4,8 +4,8 @@ defmodule Formatter do
 
     end
 
-    def fmt_mb2kb(mb) do
-        Float.round(mb/1024, 3)
+    def fmt_b2kb(b) do
+        Float.round(b/1024, 3)
     end
 
     def version do

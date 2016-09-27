@@ -63,8 +63,8 @@ defmodule Httpstat do
         IO.puts base
 
         # speed
-        speed_dl = fmt_mb2kb(times["speed_download"])
-        speed_ul = fmt_mb2kb(times["speed_upload"])
+        speed_dl = fmt_b2kb(times["speed_download"])
+        speed_ul = fmt_b2kb(times["speed_upload"])
         IO.puts ""
         IO.puts "speed download: #{speed_dl}Kib"
         IO.puts "speed upload: #{speed_ul}Kib"
