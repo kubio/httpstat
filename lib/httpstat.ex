@@ -37,7 +37,7 @@ defmodule Httpstat do
             "-w", status_format, "-D", head_file_path, "-o", body_file_path, "-s", "-S"
         ]
         options = options -- exclude_args
-        {response, 0} = System.cmd("curl", default_args ++ [url] ++ options)
+        {response, 0} = System.cmd("curl", default_args ++ [url])
 
         # parse result
         times = Poison.Parser.parse!(response)
@@ -54,9 +54,11 @@ defmodule Httpstat do
         IO.puts header
 
         # body
-        # {:ok, body} = File.read body_file_path
-        # IO.puts ""
-        # IO.puts body
+        if Enum.find_value( options, fn(option) -> option == "--show-body" end) do
+            {:ok, body} = File.read body_file_path
+            IO.puts ""
+            IO.puts body
+        end
 
         # status
         IO.puts ""
