@@ -41,17 +41,26 @@ defmodule Httpstat do
 
         # parse result
         times = Poison.Parser.parse!(response)
-        is_ssl_connect = false
-        if String.match?(url, ~r/https:\/\//) do
-            is_ssl_connect = true
-        end
-        base = template( is_ssl_connect )
+        base = template( String.match?(url, ~r/https:\/\//) )
         base = parse(times, base)
 
         # -------- output
         # header
         {:ok, header} = File.read head_file_path
-        IO.puts header
+
+        lines = String.trim(header)
+            |> String.split("\n")
+        Enum.map_reduce( lines, 0, fn (line, acc) ->
+            if acc === 0 do
+                [first, second] = String.split(line, "/", parts: 2)
+                IO.puts [color_green(first), "/", color_cyan(second)]
+            else
+                [first, second] = String.split(line, ":", parts: 2)
+                IO.puts [color_gray(first), ":", color_cyan(second)]
+            end
+            {line, acc+1}
+        end)
+        IO.puts ""
 
         # body
         if Enum.find_value( options, fn(option) -> option == "--show-body" end) do
@@ -60,19 +69,20 @@ defmodule Httpstat do
             IO.puts body
         end
 
+        IO.puts [color_green("body"), " stored in: #{body_file_path}"]
+
         # status
         IO.puts ""
         IO.puts base
 
         # speed
-        speed_dl = fmt_b2kb(times["speed_download"])
-        speed_ul = fmt_b2kb(times["speed_upload"])
-        IO.puts ""
-        IO.puts "speed download: #{speed_dl}Kib"
-        IO.puts "speed upload: #{speed_ul}Kib"
+        # speed_dl = fmt_b2kb(times["speed_download"])
+        # speed_ul = fmt_b2kb(times["speed_upload"])
+        # IO.puts ""
+        # IO.puts ["speed download: ", IO.ANSI.cyan, "#{speed_dl}Kib", IO.ANSI.reset, "/s"]
+        # IO.puts ["speed upload: ", IO.ANSI.cyan, "#{speed_ul}Kib", IO.ANSI.reset, "/s"]
 
         File.rm head_file_path
-        File.rm body_file_path
 
     end
 

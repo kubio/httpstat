@@ -1,11 +1,24 @@
 defmodule Formatter do
 
-    def make_color() do
-
+    def color_green(text) do
+        Enum.join([IO.ANSI.green, "#{text}", IO.ANSI.reset])
+    end
+    def color_cyan(text) do
+        Enum.join([IO.ANSI.cyan, "#{text}", IO.ANSI.reset])
+    end
+    def color_gray(text) do
+        Enum.join([Bunt.ANSI.dimgray, "#{text}", IO.ANSI.reset])
     end
 
     def fmt_b2kb(b) do
         Float.round(b/1024, 3)
+    end
+
+    def fmt_s2ms(s) do
+        Float.round(s, 3)*1000
+        |> round
+        |> Integer.to_string
+        |> String.rjust(5)
     end
 
     def version do

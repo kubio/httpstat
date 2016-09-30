@@ -16,7 +16,7 @@ defmodule Httpstat.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [applications: [:logger, :bunt]]
   end
 
   # Dependencies can be Hex packages:
@@ -31,7 +31,8 @@ defmodule Httpstat.Mixfile do
   defp deps do
     [
         {:temp, "~> 0.4"},
-        {:poison, "~> 2.0"}
+        {:poison, "~> 2.0"},
+        {:bunt, "~> 0.1.0"}
     ]
   end
 end
